@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Street Light Fault Register & Repair Tracker</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<header>
+
+    <h1>💡 Street Light Fault Register & Repair Tracker</h1>
+
+</header>
+
+
+<div class="container">
+
+    <!-- LEFT SIDE -->
+    <div class="left">
+
+        <h2>Register Complaint</h2>
+
+        <form action="/add" method="POST">
+
+            <label>Pole ID</label>
+
+            <input
+            type="text"
+            name="pole_id"
+            placeholder="Enter Pole ID"
+            required>
+
+            <label>Ward</label>
+
+            <input
+            type="text"
+            name="ward"
+            placeholder="Enter Ward"
+            required>
+
+            <label>Street</label>
+
+            <input
+            type="text"
+            name="street"
+            placeholder="Street Name"
+            required>
+
+            <label>Fault Type</label>
+
+            <select name="fault_type">
+
+                <option>Bulb Not Working</option>
+
+                <option>Wire Damage</option>
+
+                <option>Fuse Damage</option>
+
+                <option>Pole Damage</option>
+
+                <option>Switch Failure</option>
+
+            </select>
+
+            <label>Reported Date</label>
+
+            <input
+            <input
+            type="date"
+            name="reported_date"
+            value="{{ '' }}"
+            required>
+
+            <label>Status</label>
+
+            <select name="status">
+
+                <option>Pending</option>
+
+                <option>In Progress</option>
+
+                <option>Repaired</option>
+
+            </select>
+
+            <button type="submit">
+
+                Register Complaint
+
+            </button>
+
+        </form>
+
+    </div>
+
+
+    <!-- RIGHT SIDE -->
+    <div class="right">
+
+        <h2>Dashboard</h2>
+
+        <div class="cards">
+
+            <div class="card">
+
+                <h3>Total</h3>
+
+                <h1>{{ total }}</h1>
+
+            </div>
+
+            <div class="card pending">
+
+                <h3>Pending</h3>
+
+                <h1>{{ pending }}</h1>
+
+            </div>
+
+            <div class="card progress">
+
+                <h3>In Progress</h3>
+
+                <h1>{{ progress }}</h1>
+
+            </div>
+
+            <div class="card repaired">
+
+                <h3>Repaired</h3>
+
+                <h1>{{ repaired }}</h1>
+
+            </div>
+
+        </div>
+
+        <br>
+
+        <form method="GET">
+
+            <input
+            type="text"
+            name="search"
+            placeholder="Search Pole ID / Ward / Street">
+
+            <select name="status">
+
+                <option value="">All Status</option>
+
+                <option>Pending</option>
+
+                <option>In Progress</option>
+
+                <option>Repaired</option>
+
+            </select>
+
+            <button>
+
+                Search
+
+            </button>
+
+        </form>
+
+        <table>
+
+            <tr>
+
+                <th>ID</th>
+
+                <th>Pole</th>
+
+                <th>Ward</th>
+
+                <th>Street</th>
+
+                <th>Fault</th>
+
+                <th>Status</th>
+
+                <th>Date</th>
+
+                <th>Repair</th>
+
+                <th>Action</th>
+
+            </tr>
+
+            {% for row in complaints %}
+
+            <tr>
+
+                <td>{{ row.id }}</td>
+
+                <td>{{ row.pole_id }}</td>
+
+                <td>{{ row.ward }}</td>
+
+                <td>{{ row.street }}</td>
+
+                <td>{{ row.fault_type }}</td>
+
+                <td>{{ row.status }}</td>
+
+                <td>{{ row.reported_date }}</td>
+
+                <td>{{ row.repaired_date }}</td>
+
+                <td>
+
+                    <a href="/edit/{{ row.id }}">
+
+                        Edit
+
+                    </a>
+
+                    |
+
+                    <a
+                    href="/delete/{{ row.id }}"
+                    onclick="return confirm('Delete Complaint?')">
+
+                        Delete
+
+                    </a>
+
+                </td>
+
+            </tr>
+
+            {% endfor %}
+
+        </table>
+
+    </div>
+
+</div>
+
+
+{% with messages=get_flashed_messages() %}
+
+{% if messages %}
+
+<script>
+
+alert("{{ messages[0] }}")
+
+</script>
+
+{% endif %}
+
+{% endwith %}
+
+</body>
+</html>

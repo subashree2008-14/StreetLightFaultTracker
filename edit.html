@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Complaint</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<header>
+    <h1>Street Light Fault Register & Repair Tracker</h1>
+</header>
+
+<div class="container">
+
+    <div class="left" style="width:60%;margin:auto;">
+
+        <h2>Edit Complaint</h2>
+
+        <form action="/update/{{ complaint.id }}" method="POST">
+
+            <label>Pole ID</label>
+            <input type="text"
+                   name="pole_id"
+                   value="{{ complaint.pole_id }}"
+                   required>
+
+            <label>Ward</label>
+            <input type="text"
+                   name="ward"
+                   value="{{ complaint.ward }}"
+                   required>
+
+            <label>Street</label>
+            <input type="text"
+                   name="street"
+                   value="{{ complaint.street }}"
+                   required>
+
+            <label>Fault Type</label>
+
+            <select name="fault_type">
+
+                <option value="Bulb Not Working"
+                {% if complaint.fault_type=="Bulb Not Working" %}selected{% endif %}>
+                Bulb Not Working
+                </option>
+
+                <option value="Wire Damage"
+                {% if complaint.fault_type=="Wire Damage" %}selected{% endif %}>
+                Wire Damage
+                </option>
+
+                <option value="Fuse Damage"
+                {% if complaint.fault_type=="Fuse Damage" %}selected{% endif %}>
+                Fuse Damage
+                </option>
+
+                <option value="Pole Damage"
+                {% if complaint.fault_type=="Pole Damage" %}selected{% endif %}>
+                Pole Damage
+                </option>
+
+                <option value="Switch Failure"
+                {% if complaint.fault_type=="Switch Failure" %}selected{% endif %}>
+                Switch Failure
+                </option>
+
+            </select>
+
+            <label>Status</label>
+
+            <select name="status">
+
+                <option value="Pending"
+                {% if complaint.status=="Pending" %}selected{% endif %}>
+                Pending
+                </option>
+
+                <option value="In Progress"
+                {% if complaint.status=="In Progress" %}selected{% endif %}>
+                In Progress
+                </option>
+
+                <option value="Repaired"
+                {% if complaint.status=="Repaired" %}selected{% endif %}>
+                Repaired
+                </option>
+
+            </select>
+
+            <br><br>
+
+            <button type="submit">
+                Update Complaint
+            </button>
+
+            <br><br>
+
+            <a href="/">⬅ Back to Dashboard</a>
+
+        </form>
+
+    </div>
+
+</div>
+
+</body>
+</html>

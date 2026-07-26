@@ -1,0 +1,126 @@
+# 💡 Street Light Fault Register & Repair Tracker
+
+## Project Overview
+
+Street Light Fault Register & Repair Tracker is a Flask-based web application used to register, track, update, and manage street light complaints.
+
+---
+
+## Features
+
+- Register Street Light Complaint
+- Dashboard
+- Search Complaint
+- Filter by Status
+- Edit Complaint
+- Delete Complaint
+- Update Status
+- Pending Count
+- In Progress Count
+- Repaired Count
+- SQLite Database
+
+---
+
+## Technologies Used
+
+- Python
+- Flask
+- SQLite
+- HTML
+- CSS
+- JavaScript
+
+---
+
+## Project Structure
+
+StreetLightProject/
+
+│
+
+├── app.py
+
+├── streetlight.db
+
+├── requirements.txt
+
+├── README.md
+
+│
+
+├── templates/
+
+│ ├── index.html
+
+│ └── edit.html
+
+│
+
+└── static/
+
+├── style.css
+
+└── script.js
+
+---
+
+## Installation
+
+Install Flask
+
+pip install flask
+
+Run Project
+
+python app.py
+
+Open Browser
+
+http://127.0.0.1:5000
+
+---
+
+## Database
+
+Database Name
+
+streetlight.db
+
+Table Name
+
+complaints
+
+---
+
+## Complaint Fields
+
+- Pole ID
+- Ward
+- Street
+- Fault Type
+- Reported Date
+- Status
+- Repaired Date
+
+---
+
+## Status
+
+Pending
+
+↓
+
+In Progress
+
+↓
+
+Repaired
+
+---
+
+## Author
+
+Street Light Fault Register & Repair Tracker
+
+Python Flask Project
